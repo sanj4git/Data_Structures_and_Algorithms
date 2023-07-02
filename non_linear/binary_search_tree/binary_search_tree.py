@@ -3,6 +3,43 @@ class Node:
         self.data = data
         self.left = None
         self.right = None
+        self.parent = None
+
+    def isLeafNode(self):
+        if self is None:
+            return False
+        if self.left is None and self.right is None:
+            return True
+        else:
+            return False
+    
+    def isInternalNode(self):
+        if self is None:
+            return False
+        if self.left is not None or self.right is not None:
+            return True
+        else:
+            return False
+    
+    def isExternalNode(self):
+        if self is None:
+            return False
+        if self.left is None and self.right is None:
+            return True
+        else:
+            return False
+    
+    def isLeftNode(self):
+        if self is None:
+            return False
+        if self.parent is None:
+            return False
+        if self.parent.left is None:
+            return False
+        if self.parent.left == self:
+            return True
+        else:
+            return False
 
 class BST:
     def __init__(self):
@@ -20,6 +57,7 @@ class BST:
                 if data <= currentNode.data:
                     if currentNode.left is None:
                         currentNode.left = Node(data)
+                        currentNode.left.parent = currentNode
                         self.size += 1
                         break
                     else:
@@ -27,6 +65,7 @@ class BST:
                 elif data > currentNode.data:
                     if currentNode.right is None:
                         currentNode.right = Node(data)
+                        currentNode.right.parent = currentNode
                         self.size += 1
                         break
                     else:
@@ -187,14 +226,44 @@ class BST:
         
         return inOrder[k-1]
     
+    def levelOrderNodeList(self, node):
+        if node is None:
+            return []
+        else:
+            queue = []
+            queue.append(node)
+            queue.append(None)
+
+            levelOrderList = [[]]
+            level = 0
+
+            while len(queue) > 0:
+                currentNode = queue.pop(0)
+                if currentNode is None:
+                    level += 1
+                    if len(queue) > 0:
+                        levelOrderList.append([])
+                        queue.append(None)
+                else:
+                    levelOrderList[level].append(currentNode)
+                    
+                    if currentNode.left is not None:
+                        queue.append(currentNode.left)
+                    if currentNode.right is not None:
+                        queue.append(currentNode.right)
+            
+            return levelOrderList
+    
     def deepestLeftLeaf(self, node : Node):
-        levelOrder = self.levelOrder(node)
+        levelOrder = self.levelOrderNodeList(node)
         if levelOrder is {}:
             return None
         for level in range(len(levelOrder) - 1, -1, -1):
             for node in levelOrder[level]:
                 if node.isLeafNode() and node.isLeftNode():
                     return node.data
+                
+        return None
 
 bst = BST()
 bst.insert(10)
