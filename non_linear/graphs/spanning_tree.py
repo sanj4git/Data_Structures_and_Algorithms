@@ -21,16 +21,9 @@ class WeightedGraph:
     def edges(self):
         edges = []
         for vertex in self.aList:
-            for v in self.aList[vertex]:
-                edges.append((vertex, v))
+            for (v, w) in self.aList[vertex]:
+                edges.append((vertex, v, w))
         return edges
-    
-    def sortAdjacencyList(self):
-        # Sort keys
-        self.aList = dict(sorted(self.aList.items()))
-        # Sort values
-        for vertex in self.aList:
-            self.aList[vertex].sort()
     
     def insertVertex(self, vertex):
         if not self.isVertex(vertex):
@@ -122,9 +115,46 @@ class WeightedGraph:
                 min_cost += mst[vertex][1]
     
         return (mst, min_cost)
+    
+    def mcst_kruskal(self):
+        if len(self.edges()) == 0:
+            return None
+        
+        # Create a disjoint set for each vertex
+        components = {}
+        for vertex in self.aList:
+            components[vertex] = [vertex]
+        
+        mst = {}
+        for vertex in self.aList:
+            mst[vertex] = (-1, None)
+
+        edgeList = self.edges()
+        
+        # Sort by weight
+        edgeList.sort(key=lambda x: x[2])
+
+        min_cost = 0
+        for (u, v, w) in edgeList:
+            # Insert into tree if it does not create a cycle. Try and trace components, you'll understand it's significance - Ashwin
+            if components[u] != components[v]:
+                # Add edge to mst
+                mst[v] = (u, w)
+                min_cost += w
+
+                # Assign new component Leader
+                new_leader = components[u]
+                for vertex in self.aList:
+                    if components[vertex] == new_leader:
+                        components[vertex] = components[v]
+        
+        return (mst, min_cost)
+
+
 
 
 edgeList = [('A', 'B', 1), ('A', 'D', 4), ('A', 'E', 3), ('B', 'E', 2), ('E', 'D', 4), ('B', 'D', 4), ('E', 'C', 4), ('E', 'F', 7), ('C', 'F', 5)]
+# edgeList = [(0,1,10),(0,2,18),(1,2,6),(1,4,20),(2,3,70),(4,5,10),(4,6,10),(5,6,5)]
 g = WeightedGraph()
 for edge in edgeList:
     g.insertEdge(edge)
@@ -138,3 +168,6 @@ print("Minimum Cost Spanning Tree:", g.mcst_prim()[0])
 print("Minimum Cost:", g.mcst_prim()[1])
 
 print("\n\n")
+print("KRUSKAL'S ALGORITHM")
+print("Minimum Cost Spanning Tree:", g.mcst_kruskal()[0])
+print("Minimum Cost:", g.mcst_kruskal()[1])
