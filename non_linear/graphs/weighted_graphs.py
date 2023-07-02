@@ -11,6 +11,13 @@ class WeightedGraph:
 
     def numEdges(self):
         return sum([len(self.aList[vertex]) for vertex in self.aList])
+    
+    def sortAdjacencyList(self):
+        # Sort keys
+        self.aList = dict(sorted(self.aList.items()))
+        # Sort values
+        for vertex in self.aList:
+            self.aList[vertex].sort()
 
     def vertices(self):
         vertices = []
@@ -85,6 +92,7 @@ class WeightedGraph:
                 return False
         return True
 
+    # Single Source Shortest path
     def dijkstra(self, source):
         if not self.isDijkstraSafe():
             print("Graph is not Dijkstra safe")
@@ -120,6 +128,71 @@ class WeightedGraph:
             visited[current_min_node] = True
         
         return distance
+    
+    def bellmanFord(self, source):
+        if not self.isVertex(source):
+            print("Invalid source vertex")
+            return
+        
+        distance = {}
+        predecessor = {}
+
+        for vertex in self.vertices():
+            if vertex == source:
+                distance[vertex] = 0
+            else:
+                distance[vertex] = float("inf")
+            predecessor[vertex] = None
+        
+        for _ in range(self.numVertices() - 1):
+            for u, v, w in self.edges():
+                if distance[u] + w < distance[v]:
+                    distance[v] = distance[u] + w
+                    predecessor[v] = u
+            
+        for u, v, w in self.edges():
+            if distance[u] + w < distance[v]:
+                print("Graph contains negative weight cycle")
+                return
+        
+        return distance, predecessor
+    
+    # All Pairs Shortest Path
+    def floydWarshall(self):
+        self.sortAdjacencyList()
+
+        n = self.numVertices()
+        vertex_to_index = {}
+        index_to_vertex = {}
+
+        i = 0
+        for vertex in self.vertices():
+            vertex_to_index[vertex] = i
+            index_to_vertex[i] = vertex
+            i += 1
+        
+        AMat = [[float("inf") for _ in range(n)] for _ in range(n)]
+
+        for u, v, w in self.edges():
+            AMat[vertex_to_index[u]][vertex_to_index[v]] = w
+        
+        SP = [[float("inf") for _ in range(n)] for _ in range(n)]
+
+        for i in range(n):
+            for j in range(n):
+                if i == j:
+                    SP[i][j] = 0
+                else:
+                    SP[i][j] = AMat[i][j]
+        
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    SP[i][j] = min(SP[i][j], SP[i][k] + SP[k][j])
+
+        return SP
+        
+
 
 
 g = WeightedGraph()
@@ -166,3 +239,20 @@ print("Edges:", g.edges())
 
 print("\n\n")
 print("Dijkstra:", g.dijkstra(1))
+
+print("\n\n")
+print("Bellman-Ford:", g.bellmanFord(1))
+print("Floyd-Warshall:", g.floydWarshall())
+
+ng = WeightedGraph()
+edgeList = [
+    (1, 3, -2),
+    (2, 1, 4),
+    (3, 4, 2),
+    (4, 2, -1)
+]
+for u, v, w in edgeList:
+    ng.insertDirectedEdge((u, v, w))
+
+print("\n\n")
+print("Floyd-Warshall:", ng.floydWarshall())
