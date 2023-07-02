@@ -190,7 +190,16 @@ class WeightedGraph:
                 for j in range(n):
                     SP[i][j] = min(SP[i][j], SP[i][k] + SP[k][j])
 
-        return SP
+        distances = {}
+        for v in self.aList:
+            distances[v] = {}
+        
+        for i in range(n):
+            for j in range(n):
+                distances[index_to_vertex[i]][index_to_vertex[j]] = SP[i][j]
+                
+
+        return distances
         
 
 
@@ -237,22 +246,11 @@ print("Number of edges:", g.numEdges())
 print("Vertices:", g.vertices())
 print("Edges:", g.edges())
 
-print("\n\n")
+print("\n")
 print("Dijkstra:", g.dijkstra(1))
 
-print("\n\n")
+print("\n")
 print("Bellman-Ford:", g.bellmanFord(1))
+
+print("\n")
 print("Floyd-Warshall:", g.floydWarshall())
-
-ng = WeightedGraph()
-edgeList = [
-    (1, 3, -2),
-    (2, 1, 4),
-    (3, 4, 2),
-    (4, 2, -1)
-]
-for u, v, w in edgeList:
-    ng.insertDirectedEdge((u, v, w))
-
-print("\n\n")
-print("Floyd-Warshall:", ng.floydWarshall())
