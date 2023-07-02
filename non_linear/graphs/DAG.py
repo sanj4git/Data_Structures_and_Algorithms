@@ -216,8 +216,6 @@ class DAG:
         for v in self.aList:
             in_degrees[v] = self.inDegree(v)
             longest_paths[v] = 0
-        
-        topological_order = []
         queue = []
 
         for v in in_degrees:
@@ -226,7 +224,6 @@ class DAG:
         
         while queue:
             vertex = queue.pop(0)
-            topological_order.append(vertex)
             for v in self.aList[vertex]:
                 if longest_paths[v] < longest_paths[vertex] + 1:
                     longest_paths[v] = longest_paths[vertex] + 1
@@ -265,4 +262,3 @@ print("BFS Spanning Tree:", g.BFS_spanning_tree(0))
 print("Is DAG:", g.isDAG())
 print("Topological Sort:", g.topological_sort())
 print("Longest Path:", g.longestPath())
-print("Trace Longest Path:", g.traceLongestPath())
