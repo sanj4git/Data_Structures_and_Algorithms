@@ -171,3 +171,4 @@ print("\n\n")
 print("KRUSKAL'S ALGORITHM")
 print("Minimum Cost Spanning Tree:", g.mcst_kruskal()[0])
 print("Minimum Cost:", g.mcst_kruskal()[1])
+
