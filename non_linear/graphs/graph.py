@@ -219,6 +219,7 @@ class Graph:
                         queue.append(v)
         return spanning_tree
     
+    # DFS Applications
     def findPath(self, start_vertex, end_vertex):
         spanning_tree = self.DFS_spanning_tree(start_vertex)
         path = []
@@ -232,6 +233,8 @@ class Graph:
     def detectCycleDFS(self):
         """
         The idea behind the function is to perform a depth-first search starting from each unvisited vertex in the graph. During the DFS traversal, if a vertex is encountered that has already been visited, it implies that there is a cycle in the graph. The function immediately returns "True" in that case.
+
+        Finding a backward edge in other words.
 
         If the DFS traversal is completed without encountering a cycle, the function returns "False".
         """
@@ -253,6 +256,27 @@ class Graph:
                 if DFS_visit(vertex):
                     return True
         return False
+    
+
+
+    # BFS Applications
+    def findConnectedComponents(self):
+        visited = {}
+        for vertex in self.vertices():
+            visited[vertex] = False
+        
+        connected_components = []
+
+        for vertex in self.vertices():
+            if not visited[vertex]:
+                connected_component = self.BFS(vertex)
+                connected_components.append(connected_component)
+                for v in connected_component:
+                    visited[v] = True
+
+        return connected_components
+    
+
 
 
 if __name__ == "__main__":
@@ -292,7 +316,8 @@ if __name__ == "__main__":
     print("BFS Spanning Tree:", g.BFS_spanning_tree(0))
 
     print("Path from 0 to 10:", g.findPath(0, 10))
-    print("Cyclic:", g.detectCycleDFS())
+    print("Cyclic DFS:", g.detectCycleDFS())
+    print("Connected Components:", g.findConnectedComponents())
 
     print("\n\n")
 
@@ -322,7 +347,8 @@ if __name__ == "__main__":
     print("BFS Spanning Tree:", dag.BFS_spanning_tree(1))
 
     print("Path from 1 to 4:", dag.findPath(1, 4))
-    print("Cyclic:", dag.detectCycleDFS())
+    print("Cyclic DFS:", dag.detectCycleDFS())
+    print("Connected Components:", dag.findConnectedComponents())
 
     print("\n\n")
 
@@ -354,4 +380,5 @@ if __name__ == "__main__":
 
     print("Path from 1 to 4:", cyclic.findPath(1, 4))
     print("Path from 1 to 5:", cyclic.findPath(1, 5))
-    print("Cyclic:", cyclic.detectCycleDFS())
+    print("Cyclic DFS:", cyclic.detectCycleDFS())
+    print("Connected Components:", cyclic.findConnectedComponents())
