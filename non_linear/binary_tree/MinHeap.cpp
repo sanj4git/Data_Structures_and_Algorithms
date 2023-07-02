@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<queue>
+#include<stack>
 using namespace std;
 
 //Min heap with 1 based indexing

@@ -1,4 +1,6 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<queue>
+#include<stack>
 using namespace std;
 
 typedef struct node {

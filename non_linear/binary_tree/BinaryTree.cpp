@@ -1,4 +1,7 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<queue>
+#include<stack>
+
 using namespace std;
 
 #define MAX_SIZE 25000
@@ -63,7 +66,7 @@ public:
 		root = nullptr;
 	}
 
-	insert(int key) {
+	void insert(int key) {
 
 		root = inserter(root, key);
 
