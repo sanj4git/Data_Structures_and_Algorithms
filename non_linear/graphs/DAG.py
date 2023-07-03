@@ -1,5 +1,4 @@
 class DAG:
-
     def __init__(self):
         self.aList = {}
         self.size = 0

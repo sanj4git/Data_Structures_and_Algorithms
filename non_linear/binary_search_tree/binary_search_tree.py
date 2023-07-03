@@ -264,6 +264,41 @@ class BST:
                     return node.data
                 
         return None
+    
+    def inOrderSuccessor(self, node):
+        currentNode = node
+        while currentNode and currentNode.left != None:
+            currentNode = currentNode.left
+        
+        return currentNode
+    
+    def delete(self, node, key):
+        if key < node.data:
+            node.left = self.delete(node.left, key)
+        
+        elif key > node.data:
+            node.right = self.delete(node.right, key)
+        
+        else:
+            # Case 1. No children.
+            # Case 2. 1 child.
+            if node.left is None:
+                temp = node.right
+                del node
+                return temp
+            elif node.right is None:
+                temp = node.left
+                del node
+                return temp
+            
+            # Case 3. Two children.
+            temp = self.inOrderSuccessor(node.right)
+            node.data = temp.data
+            node.right = self.delete(node.right, temp.data)
+        
+        return node
+
+
 
 bst = BST()
 bst.insert(10)
@@ -291,3 +326,27 @@ print("Greatest Common Ancestor of 3 and 7: ", bst.greatestCommonAncestor(3, 7))
 print("Kth Minimum (k = 3): ", bst.kThMinimum(3))
 print("Kth Maximum (k = 3): ", bst.kThMaximum(3))
 print("Deepest Left Leaf: ", bst.deepestLeftLeaf(bst.root))
+
+bstB = BST()
+
+bstB.root = Node(44)
+bstB.root.left = Node(17)
+bstB.root.right = Node(88)
+bstB.root.left.left = Node(8)
+bstB.root.left.right = Node(28)
+bstB.root.left.right.left = Node(21)
+bstB.root.left.right.right = Node(29)
+
+bstB.root.right.left = Node(65)
+bstB.root.right.right = Node(97)
+bstB.root.right.right.left = Node(93)
+
+bstB.root.right.left.left = Node(54)
+bstB.root.right.left.right = Node(82)
+bstB.root.right.left.right.left = Node(76)
+bstB.root.right.left.right.left.left = Node(68)
+bstB.root.right.left.right.left.right = Node(80)
+
+print("InOrder:", bstB.inOrder(bstB.root))
+print("Delete 88", bstB.delete(bstB.root, 88))
+print("InOrder:", bstB.inOrder(bstB.root))

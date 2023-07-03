@@ -93,7 +93,7 @@ class WeightedGraph:
         picked_v = self.vertices()[0]
         distance[picked_v] = 0
 
-        for i in range(0, self.numVertices()):
+        for _ in range(0, self.numVertices()):
             # Get the minimum distance of neighbours
             min_distance = min([distance[v] for v in self.aList if not visited[v]])
 
