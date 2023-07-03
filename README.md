@@ -8,5 +8,6 @@ A collection of data structures and algorithms implemented in Python.
 - [ ] `Printing the cycle found with BFS`
 - [ ] `Printing the cycle found with DFS`
 - [ ] `Testing a graph for bipartiteness`
+- [ ] `Optimizing Dijkstra Code`
 
 `Ashwin Narayanan S`
