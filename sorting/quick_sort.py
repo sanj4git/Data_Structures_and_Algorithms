@@ -41,7 +41,7 @@ def quick_sort(L, left, right):
         quick_sort(L, left, pivot_index - 1)
         quick_sort(L, pivot_index + 1, right)
 
-L = [i for i in range(100, 0, -1)]
+L = [i for i in range(10, 0, -1)]
 
 print("[Extra Space] Before sorting: ", L)
 print("[Extra Space] After sorting: ", quick_sort_extra_space(L))
