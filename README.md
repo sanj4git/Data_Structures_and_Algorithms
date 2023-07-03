@@ -10,4 +10,9 @@ A collection of data structures and algorithms implemented in Python.
 - [ ] `Testing a graph for bipartiteness`
 - [ ] `Optimizing Dijkstra Code`
 
-`Ashwin Narayanan S`
+## Contributions
+
+| Contribution | Contributor |
+| ------------ | ----------- |
+| `.py` | `Ashwin Narayanan S` |
+| `.cpp` | `Aasil` |
