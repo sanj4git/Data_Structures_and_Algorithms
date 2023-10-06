@@ -1,139 +1,34 @@
-class MinHeap:
-    def __init__(self):
-        self.heap = []
+from random import randint
 
-    def heapify(self, i):
-        l = 2*i + 1
-        r = 2*i + 2
-        smallest = i
+def maxHeapify(A, i, heap_size):
+    l = 2 * i + 1
+    r = 2 * i + 2
 
-        if l < len(self.heap) and self.heap[l] < self.heap[smallest]:
-            smallest = l
-        if r < len(self.heap) and self.heap[r] < self.heap[smallest]:
-            smallest = r
-        
-        if smallest != i:
-            self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
-            self.heapify(smallest)
-
-    def build_heap(self, arr):
-        self.heap = arr
-        for i in range(len(self.heap) // 2 - 1, -1, -1):
-            self.heapify(i)
-    
-    def insert(self, data):
-        self.heap.append(data)
-        i = len(self.heap) - 1
-
-        while i > 0:
-            parent = (i - 1) // 2
-            if self.heap[i] < self.heap[parent]:
-                self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
-                i = parent
-            else:
-                break
-        
-    def extract_min(self):
-        if len(self.heap) == 0:
-            return None
-        
-        self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
-        heap_min = self.heap.pop()
-        self.heapify(0)
-
-        return heap_min
-    
-    def delete(self, data):
-        if len(self.heap) == 0:
-            return None
-        
-        i = self.heap.index(data)
-        self.heap[i], self.heap[-1] = self.heap[-1], self.heap[i]
-        self.heap.pop()
-        self.heapify(i)
-
-    
-    def __str__(self):
-        return str(self.heap)
-
-class MaxHeap:
-    def __init__(self):
-        self.heap = []
-
-    def heapify(self, i):
-        l = 2*i + 1
-        r = 2*i + 2
+    if l < heap_size and A[l] > A[i]:
+        largest = l
+    else:
         largest = i
 
-        if l < len(self.heap) and self.heap[l] > self.heap[largest]:
-            largest = l
-        if r < len(self.heap) and self.heap[r] > self.heap[largest]:
-            largest = r
-        
-        if largest != i:
-            self.heap[i], self.heap[largest] = self.heap[largest], self.heap[i]
-            self.heapify(largest)
+    if r < heap_size and A[r] > A[largest]:
+        largest = r
 
-    def build_heap(self, arr):
-        self.heap = arr
-        for i in range(len(self.heap) // 2 - 1, -1, -1):
-            self.heapify(i)
-    
-    def insert(self, data):
-        self.heap.append(data)
-        i = len(self.heap) - 1
+    if largest != i:
+        A[i], A[largest] = A[largest], A[i]
+        maxHeapify(A, largest, heap_size)
 
-        while i > 0:
-            parent = (i - 1) // 2
-            if self.heap[i] > self.heap[parent]:
-                self.heap[i], self.heap[parent] = self.heap[parent], self.heap[i]
-                i = parent
-            else:
-                break
-        
-    def extract_max(self):
-        if len(self.heap) == 0:
-            return None
-        
-        self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
-        heap_max = self.heap.pop()
-        self.heapify(0)
+def buildMaxHeap(A, heap_size):
+    for i in range(heap_size//2, -1, -1):
+        maxHeapify(A, i, heap_size)
 
-        return heap_max
-    
-    def delete(self, data):
-        if len(self.heap) == 0:
-            return None
-        
-        i = self.heap.index(data)
-        self.heap[i], self.heap[-1] = self.heap[-1], self.heap[i]
-        self.heap.pop()
-        self.heapify(i)
+def heapSort(A, heap_size):
+    buildMaxHeap(A, heap_size)
 
-    
-    def __str__(self):
-        return str(self.heap)
-    
+    for i in range(heap_size-1, 0, -1):
+        A[0], A[i] = A[i], A[0]
+        heap_size -= 1
+        maxHeapify(A, 0, heap_size)
 
-def heapSortMin(A):
-    heap = MinHeap()
-    heap.build_heap(A)
-    sorted_arr = []
-    for _ in range(len(A)):
-        sorted_arr.append(heap.extract_min())
-    return sorted_arr
-
-def heapSortMax(A):
-    heap = MaxHeap()
-    heap.build_heap(A)
-    sorted_arr = []
-    for _ in range(len(A)):
-        sorted_arr.append(heap.extract_max())
-    return sorted_arr
-
-
-L = [i for i in range(100, 0, -1)]
-print("Min Heap Sort:", heapSortMin(L))
-
-L = [i for i in range(100, 0, -1)]
-print("Max Heap Sort:", heapSortMax(L))
+A = [randint(0, 100) for _ in range(10)]
+print(A)
+heapSort(A, len(A))
+print(A)

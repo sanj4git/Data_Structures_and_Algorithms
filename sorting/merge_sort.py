@@ -1,49 +1,46 @@
-def merge(L, left, mid, right):
-    left_size = mid - left + 1
-    right_size = right - mid
-    
-    left_array = [0 for _ in range(left_size)]
-    right_array = [0 for _ in range(right_size)]
+from random import randint
 
-    for i in range(left_size):
-        left_array[i] = L[left + i]
+def merge(A, p, q, r):
+    n1 = q - p + 1
+    n2 = r - q
 
-    for i in range(right_size):
-        right_array[i] = L[mid + 1 + i]
-    
+    L = [0 for i in range(n1)]
+    R = [0 for i in range(n2)]
+
+    for i in range(n1):
+        L[i] = A[p+i]
+
+    for i in range(n2):
+        R[i] = A[q+i+1]
+
     i = 0
     j = 0
-    k = left
+    
+    for k in range(p, r + 1):
+        if i < n1 and j < n2:
+            if L[i] <= R[j]:
+                A[k] = L[i]
+                i += 1
+            else:
+                A[k] = R[j]
+                j += 1
 
-    while (i < left_size) and (j < right_size):
-        if left_array[i] <= right_array[j]:
-            L[k] = left_array[i]
+        elif i < n1:
+            A[k] = L[i]
             i += 1
         else:
-            L[k] = right_array[j]
+            A[k] = R[j]
             j += 1
-        k += 1
-        
-    while i < left_size:
-        L[k] = left_array[i]
-        i += 1
-        k += 1
 
-    while j < right_size:
-        L[k] = right_array[j]
-        j += 1
-        k += 1
 
-def merge_sort(L, left, right):
-    if len(L) <= 1:
-        return L
-    
-    if left < right:
-        mid = (left + right) // 2
-        merge_sort(L, left, mid)
-        merge_sort(L, mid+1, right)
-        merge(L, left, mid, right)
+def mergeSort(A, p, r):
+    if p < r:
+        q = (p + r) // 2
+        mergeSort(A, p, q)
+        mergeSort(A, q+1, r)
+        merge(A, p, q, r)
 
-L = [i for i in range(10000, 0, -1)]
-merge_sort(L, 0, len(L)-1)
-print(L)
+A = [randint(0, 100) for _ in range(10)]
+print(A)
+mergeSort(A, 0, len(A)-1)
+print(A)
