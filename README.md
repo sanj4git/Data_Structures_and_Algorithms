@@ -1,7 +1,7 @@
 # Data Structures And Algorithms
 
 A collection of data structures and algorithms implemented in Python.
-Inspired from the `Design and Analysis of Algorithms` course from `3rd year, B Tech, CSE, Amrita Vishwa Vidyapeetham, Coimbatore` taught by [`Dr. Vidya Balasubramanian`](https://www.amrita.edu/faculty/b-vidhya/) ma'am.
+Inspired from the `Design and Analysis of Algorithms` course from `3rd year, B Tech, CSE, Amrita Vishwa Vidyapeetham, Coimbatore` taught by `Dr. Vidya Balasubramanian` ma'am.
 
 <!--
 ## Contributions required on
