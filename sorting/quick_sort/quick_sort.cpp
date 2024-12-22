@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>  
 
 using namespace std;
 
@@ -28,15 +29,12 @@ void quickSort(int A[], int p, int r) {
 }
 
 int main() {
+    srand(time(0));  
     int A[10];
     for (int &x : A) x = rand() % 101;  
     for (int x : A) cout << x << " ";  
     cout << endl;
-
-    quickSort(A, 0, 9);
-
-    for (int x : A) cout << x << " ";  
-    cout << endl;
-    
+    quickSort(A, 0, 9); 
+    for (int x : A) cout << x << " ";      
     return 0;
 }
