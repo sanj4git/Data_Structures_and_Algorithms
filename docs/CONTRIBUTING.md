@@ -72,7 +72,7 @@ There’s plenty to do! Here are some ways you can help:
 1. **New Algorithms**: If you have an algorithm we’re missing, bring it in!  
 2. **Bug Fixes**: Fixing those pesky bugs!  
 3. **Documentation**: Add examples, comments, or improve the README. This helps others understand the code better.  
-2  **Different approach and Proposing new problem**: New approach to solve a existing problem in the repository. And if you feel like something could be added as a problem feel free to use the open issue and put your problem request as comments.
+4. **Different approach and Proposing new problem**: New approach to solve a existing problem in the repository. And if you feel like something could be added as a problem feel free to use the open issue and put your problem request as comments.
 
 ---  
 
