@@ -5,8 +5,6 @@
 | Version | Supported           |
 |---------|---------------------|
 | v1.0.x  | ✅ Full support     |
-| v0.9.x  | ⚠️ Bug fixes only   |
-| < v0.9  | ❌ Unsupported      |
 
 ---
 
