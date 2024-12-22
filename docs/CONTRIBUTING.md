@@ -1,157 +1,128 @@
-# **Contributing to the Data Structures and Algorithms Repository**
+# **Contributing to the Data Structures and Algorithms Repository**  
 
-Thank you for your interest in contributing to the **Data Structures and Algorithms** repository! This project thrives on collaboration, and we are excited to have you contribute to its growth and improvement. Below, you'll find guidelines and instructions to help you get started.
+Hey there! 👋  
+We’re so glad you’re here and interested in contributing to this project. Below, you'll find guidelines and instructions to help you get started. Let’s dive in! 🚀  
 
----
+## **Table of Contents**  
+1. [Getting Started](#getting-started)  
+   - [Clone the Repository](#clone-the-repository)  
+2. [How to Contribute](#how-to-contribute)  
+   - [1. Fork the Repository](#1-fork-the-repository)  
+   - [2. Set Upstream](#2-set-upstream)  
+   - [3. Create a New Branch](#3-create-a-new-branch)  
+3. [What Can You Contribute?](#what-can-you-contribute)  
+4. [Submitting Your Changes](#submitting-your-changes)  
+5. [Coding Standards](#coding-standards)  
+6. [Community Support](#community-support)  
 
-## **Table of Contents**
+---  
 
-1. [Getting Started](#getting-started)
-    - [Clone the Repository](#clone-the-repository)
-    - [Run Python Code](#run-python-code)
-    - [Run C++ Code](#run-c-code)
-    - [Run Java Code](#run-java-code)
-2. [How to Contribute](#how-to-contribute)
-    - [Fork the Repository](#fork-the-repository)
-    - [Set Upstream](#set-upstream)
-    - [Create a Branch](#create-a-branch)
-3. [Code Submission Guidelines](#code-submission-guidelines)
-4. [Pull Request Process](#pull-request-process)
-5. [Coding Standards](#coding-standards)
-6. [Common Contribution Types](#common-contribution-types)
-7. [Code Review Process](#code-review-process)
-8. [Community Support](#community-support)
+## **Getting Started**  
 
----
+### **Clone the Repository**  
 
-## **Getting Started**
+To get started, pull the repository to your local machine:  
 
-### **Clone the Repository**
+```bash  
+git clone https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms.git  
+cd Data_Structures_and_Algorithms  
+```  
 
-To get started, clone the repository to your local machine:
+---  
 
-```bash
-git clone https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms.git
-cd Data_Structures_and_Algorithms
-```
+## **How to Contribute**  
 
----
+### **1. Fork the Repository**  
 
-## **How to Contribute**
+Start by forking this repository to create a copy under your GitHub account.  
+- Hit the **Fork** button on the repository page.  
 
-### **Fork the Repository**
+Clone your forked version:  
+```bash  
+git clone https://github.com/<your-username>/Data_Structures_and_Algorithms.git  
+cd Data_Structures_and_Algorithms  
+```  
+*(Replace `<your-username>` with your GitHub username.)*  
 
-1. Click the **Fork** button at the top-right corner of this repository to create a personal copy under your GitHub account.
-    
-2. Clone your fork locally:
-    
-    ```bash
-    git clone https://github.com/<your-username>/Data_Structures_and_Algorithms.git
-    ```
-    
-    Replace `<your-username>` with your GitHub username.
-    
-3. Navigate to the repository's directory:
-    
-    ```bash
-    cd Data_Structures_and_Algorithms
-    ```
+### **2. Set Upstream**  
 
-### **Set Upstream**
+To keep your fork up-to-date with the original repository:  
+```bash  
+git remote add upstream https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms.git  
+```  
 
-To keep your fork up-to-date with the original repository:
+### **3. Create a New Branch**  
 
-```bash
-git remote add upstream https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms.git
-```
+Before making any changes, create a new branch:  
+```bash  
+git checkout -b feature/<branch-name>  
+```  
+Examples:  
+- `feature/add-dijkstra`  
+- `fix/binary-search-bug`  
 
-### **Create a Branch**
+Now you’re all set to start coding!  
 
-Before making any changes, create a new branch:
+---  
 
-```bash
-git checkout -b feature/<branch-name>
-```
+## **What Can You Contribute?**  
 
-Examples of branch names:
+There’s plenty to do! Here are some ways you can help:  
 
-- `feature/add-dijkstra`
-- `fix/binary-search-bug`
+1. **New Algorithms**: If you have an algorithm we’re missing, bring it in!  
+2. **Bug Fixes**: Fixing those pesky bugs!  
+3. **Documentation**: Add examples, comments, or improve the README. This helps others understand the code better.  
+2  **Different approach and Proposing new problem**: New approach to solve a existing problem in the repository. And if you feel like something could be added as a problem feel free to use the open issue and put your problem request as comments.
 
----
+---  
 
-## **Code Submission Guidelines**
+## **Submitting Your Changes**  
 
-### **General Guidelines**
+Once your changes are ready:  
 
-1. **Document Your Code**: Include a brief description at the top explaining its functionality.
-2. **Complexity & Tests**: Clearly state the time and space complexity of your algorithm in comments and include test cases for your code, if applicable, specifying inputs and expected outputs.
+1. **Commit Your Work**  
+   Write clear and concise commit messages:  
+   ```bash  
+   git commit -m "Add: Quick Sort implementation in Python"  
+   ```  
 
-### **Language-Specific Guidelines**
+2. **Push Your Branch**  
+   Send your changes to your fork:  
+   ```bash  
+   git push origin feature/<branch-name>  
+   ```  
 
-- **Python**: Follow [PEP 8](https://peps.python.org/pep-0008/) for style and indentation.
-- **Java**: Use meaningful class names and follow the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
-- **C++**: Follow consistent naming conventions (e.g., camelCase for variables).
-- **Go**: Adhere to [Effective Go](https://go.dev/doc/effective_go) for idiomatic code, use `gofmt` for formatting, and prefer concise, readable code following Go conventions.
+3. **Open a Pull Request**  
+   - Head to the original repository.  
+   - Click **Pull Requests** > **New Pull Request**.  
+   - Select your branch, add a meaningful title and description, and submit the PR. Let it be short and crisp.  
 
----
+4. **Feedback Time**  
+   Reviewers might leave comments—don’t worry, it’s all to make your work shine! Update your code and resubmit when needed.  
 
-## **Pull Request Process**
+---  
 
-1. **Commit Your Changes**: Ensure your commit message is clear and descriptive:
-    
-    ```bash
-    git commit -m "Add: Dijkstra's algorithm in Python"
-    ```
+## **Coding Standards**  
 
-2. **Push Your Branch**:
-    
-    ```bash
-    git push origin feature/<branch-name>
-    ```
+Great code is readable and consistent. Here are some tips to keep in mind:  
 
-3. **Create a Pull Request (PR)**:
+- **Document Your Code**: Add comments, especially for tricky parts.  
+- **Follow Standards**:  
+  - **Python**: Stick to [PEP 8](https://peps.python.org/pep-0008/).  
+  - **Java**: Follow the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).  
+  - **C++**: Use camelCase for variables and meaningful function names.  
+  - **Go**: Adhere to [Effective Go](https://go.dev/doc/effective_go).  
+- **Test Your Code**: Include test cases with inputs and expected outputs.  
 
-   - Navigate to the original repository.
-   - Click on **Pull Requests** > **New Pull Request**.
-   - Select your branch and submit your PR.
-   - Provide a detailed description of your changes, linking to relevant issues if applicable.
+---  
 
-4. **Respond to Feedback**: Collaborators may request changes or provide feedback. Be prompt in making updates.
+## **Community Support**  
 
----
+If you have any questions or suggestions:  
 
-## **Coding Standards**
+- **Questions**: Open a discussion under the **Discussions** tab.  
+- **Issues**: Issues will be made available with bounty points for ACM AmWOC (Amrita Winter Of Code) and will be assigned on request to the participants.  
 
-1. **Readability**: Ensure your code is easy to read with proper comments and spacing.
-2. **Consistency**: Follow the repository's existing coding style.
-3. **Error Handling**: Include error-handling mechanisms where applicable.
-
----
-
-## **Common Contribution Types**
-
-The issues in the repository will mainly be categorized into the following types and can be assigned on a first-come-first-serve basis:
-
-1. **New Algorithms**: Implement algorithms that are not yet part of the repository.
-2. **Optimization**: Improve the performance of existing algorithms.
-3. **Bug Fixes**: Address issues raised by other contributors.
-4. **Documentation**: Enhance README files, add examples, or improve code comments.
-
----
-
-## **Code Review Process**
-
-- All pull requests (PRs) undergo a thorough review for quality, clarity, and performance.
-- Approved PRs are merged by the repository maintainers.
-
----
-
-## **Community Support**
-
-- **Questions**: Open a discussion under the **Discussions** tab.
-- **Issues**: Issues will be available with bounty points for the AMWOC and can be assigned on request.
-
-We’re excited to have you onboard. Let’s build something amazing together! 🚀
+We’re happy to have you onboard. 🚀  
 
 ---
