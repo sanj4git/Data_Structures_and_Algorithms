@@ -15,27 +15,27 @@ int partition(int A[], int p, int r) {
             swap(A[i], A[j]);
         }
     }
-    swap(A[i + 1], A[r]);  // Put the pivot in the correct position
+    swap(A[i + 1], A[r]);  
     return i + 1;
 }
 
-void quickSort(int A[], int p, int r) { // Function recursively sorts the array
+void quickSort(int A[], int p, int r) { 
     if (p < r) {
         int q = partition(A, p, r);
-        quickSort(A, p, q - 1); // Sort the left half
-        quickSort(A, q + 1, r); // Sort the right half
+        quickSort(A, p, q - 1); 
+        quickSort(A, q + 1, r); 
     }
 }
 
 int main() {
     int A[10];
-    for (int &x : A) x = rand() % 101;  // Random integers between 0 and 100
-    for (int x : A) cout << x << " ";  // Display before sorting
+    for (int &x : A) x = rand() % 101;  
+    for (int x : A) cout << x << " ";  
     cout << endl;
 
     quickSort(A, 0, 9);
 
-    for (int x : A) cout << x << " ";  // Display after sorting
+    for (int x : A) cout << x << " ";  
     cout << endl;
     
     return 0;
