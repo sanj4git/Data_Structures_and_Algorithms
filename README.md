@@ -11,7 +11,7 @@
 
 ---
 
-A collection of data structures and algorithms implemented in Python. Inspired by the **Design and Analysis of Algorithms** course from the 3rd year of **B. Tech, CSE** at **Amrita Vishwa Vidyapeetham, Coimbatore**, taught by **Dr. Vidya Balasubramanian** ma'am.  
+A collection of data structures and algorithms implemented in `Python`. Inspired by the `Design and Analysis of Algorithms` course from the 3rd year of `B. Tech, CSE` at `Amrita Vishwa Vidyapeetham, Coimbatore`, taught by `Dr. Vidya Balasubramanian` ma'am.   
 
 ---
 
@@ -48,7 +48,7 @@ Now you’re ready to explore and experiment with the algorithms in this reposit
 
 ## **Running Code**
 
-### **Run Python Code**
+### `Run Python Code`
 
 Execute Python scripts directly in your terminal:
 
@@ -56,7 +56,7 @@ Execute Python scripts directly in your terminal:
 python sorting/quick_sort.py
 ```
 
-### **Run C++ Code**
+### `Run C++ Code`
 
 To compile and run C++ files:
 
@@ -65,7 +65,7 @@ g++ -o quick_sort sorting/quick_sort.cpp
 ./quick_sort
 ```
 
-### **Run Java Code**
+### `Run Java Code`
 
 For Java programs, first compile and then run:
 
@@ -74,7 +74,7 @@ javac sorting/QuickSort.java
 java sorting/QuickSort
 ```
 
-### **Run Go Code**
+### `Run Go Code`
 
 Run Go programs using the `go run` command:
 
@@ -86,16 +86,16 @@ go run sorting/quick_sort.go
 
 ## **Contributing**
 
-We’re excited to have you contribute! Whether it’s adding a new algorithm, fixing a bug, or improving documentation, every contribution counts. For detailed instructions, check out the [CONTRIBUTING.md](docs/CONTRIBUTING.md) file.
+We’re excited to have you contribute! Whether it’s adding a new algorithm, fixing a bug, or improving documentation, every contribution counts. For detailed instructions, check out the [`CONTRIBUTING.md`](docs/CONTRIBUTING.md) file.
 
 ---
 
 ## **Contributors**
 
-| **Contribution Type**    | **Contributor**      |
-| ------------------------ | -------------------- |
-| Python Implementation   | Ashwin Narayanan S   |
-| C++ Implementation      | Aasil                |
+| **Contribution**              | **Contributor**                              |
+| ----------------------------- | -------------------------------------------- |
+| Python (.py)                  | [Ashwin Narayanan S](https://github.com/Ashrockzzz2003) |
+| C++ (.cpp)                    | [Aasil](https://github.com/mdxaasil)         |
 
 Want to see your name here? Contribute this Winter for AmWOC (Amrita Winter of Code) and make it! 🚀
 
@@ -103,7 +103,7 @@ Want to see your name here? Contribute this Winter for AmWOC (Amrita Winter of C
 
 ## **License**
 
-This repository is licensed under the **GNU General Public License**. You’re free to use, modify, and share the code for your projects—just make sure to give proper credit. Full details can be found in the [LICENSE](LICENSE) file.
+This repository is licensed under the `GNU General Public License`. You’re free to use, modify, and share the code for your projects—just make sure to give proper credit. Full details can be found in the [LICENSE](LICENSE) file.
 
 ---
 
