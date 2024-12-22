@@ -1,10 +1,6 @@
----
-
 # **Data Structures and Algorithms** 📚💻
 
-Welcome to the **Data Structures and Algorithms** repository—a comprehensive collection of foundational data structures and algorithms implemented in Python, C++, GO and Java.
-
-This repository serves as a resource hub for computer science students and enthusiasts eager to deepen their understanding of algorithmic design.
+Welcome to the **Data Structures and Algorithms** repository—a comprehensive collection of foundational data structures and algorithms implemented in **Python**, **C++**, **Go**, and **Java**. This repository serves as a resource hub for **computer science students** and **enthusiasts** eager to deepen their understanding of algorithmic design.
 
 ---
 
@@ -13,15 +9,11 @@ This repository serves as a resource hub for computer science students and enthu
 1. [Overview](#overview)
 2. [Why Use This Repository?](#why-use-this-repository)
 3. [Getting Started](#getting-started)
-   - [Clone the Repository](#clone-the-repository)
-   - [Run Python Code](#run-python-code)
-   - [Run C++ Code](#run-c-code)
-   - [Run Java Code](#run-java-code)
-4. [Contributing to Data Structures and Algorithms Repository](#contributing-to-data-structures-and-algorithms-repository)
-   - [How to Contribute](#how-to-contribute)
-   - [Code Submission Guidelines](#code-submission-guidelines)
-   - [Pull Request Process](#pull-request-process)
-   - [Coding Standards](#coding-standards)
+   * [Clone the Repository](#clone-the-repository)
+   * [Run Python Code](#run-python-code)
+   * [Run C++ Code](#run-c-code)
+   * [Run Java Code](#run-java-code)
+4. [Contributing](#contributing)
 5. [Common Contribution Types](#common-contribution-types)
 6. [Code Review Process](#code-review-process)
 7. [Community Support](#community-support)
@@ -32,28 +24,33 @@ This repository serves as a resource hub for computer science students and enthu
 
 ---
 
-## **Overview**
+## **Overview** 
 
-### **Why Use This Repository?**
-
-* 📘 **Educational Resource**: Ideal for mastering fundamental concepts in computer science.
-* 🧑‍💻 **Interview Preparation**: Features commonly asked problems and optimized solutions.
-* 🌍 **Community Collaboration**: Contributions from students ensure a dynamic and growing repository.
+The **Data Structures and Algorithms** repository is designed to offer students and developers a well-structured guide to learning common algorithms and data structures across multiple programming languages. With implementations in Python, C++, Go, and Java, this repository is perfect for anyone looking to improve their understanding of algorithmic principles or prepare for technical interviews.
 
 ---
 
-## **Getting Started**
+### **Why Use This Repository?**
+
+- 📘 **Educational Resource**: Ideal for mastering fundamental concepts in computer science.
+- 🌍 **Community Collaboration**: Contributions from students and developers create a dynamic and growing repository.
+
+---
+
+## **Getting Started** 
 
 ### **Clone the Repository**
 
+To get started with contributing or exploring the repository, follow these simple steps:
+
 ```bash
 git clone https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms.git  
-cd Data_Structures_and_Algorithms  
+cd Data_Structures_and_Algorithms
 ```
 
 ### **Run Python Code**
 
-Execute any Python script directly:
+Execute Python scripts directly in your terminal:
 
 ```bash
 python sorting/quick_sort.py
@@ -61,7 +58,7 @@ python sorting/quick_sort.py
 
 ### **Run C++ Code**
 
-Compile and execute C++ files:
+To compile and run C++ files:
 
 ```bash
 g++ -o quick_sort sorting/quick_sort.cpp
@@ -70,7 +67,7 @@ g++ -o quick_sort sorting/quick_sort.cpp
 
 ### **Run Java Code**
 
-Compile and run Java programs:
+For Java programs, first compile and run:
 
 ```bash
 javac sorting/QuickSort.java
@@ -79,107 +76,16 @@ java sorting/QuickSort
 
 ---
 
-## **Contributing to Data Structures and Algorithms Repository**
+## **Contributing** 
 
-Welcome, and thank you for your interest in contributing to the **Data Structures and Algorithms** repository! This project thrives on the collaborative efforts of a community of students.
-
----
-
-### **How to Contribute**
-
-#### Step 1: Fork the Repository
-
-To get started:
-
-1. Click the **Fork** button at the top-right corner of this repository. This creates a personal copy under your GitHub account.
-2. Clone your fork locally using the following command:
-
-```bash
-git clone https://github.com/<your-username>/Data_Structures_and_Algorithms.git
-```
-
-Replace `<your-username>` with your GitHub username.
-
-3. Navigate to the repository's directory:
-
-```bash
-cd Data_Structures_and_Algorithms
-```
-
-#### Step 2: Set Upstream
-
-To keep your fork up-to-date with the original repository:
-
-```bash
-git remote add upstream https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms.git
-```
-
-#### Step 3: Create a Branch
-
-Before making changes, create a new branch:
-
-```bash
-git checkout -b feature/<branch-name>
-```
-
-Examples of branch names:
-
-* `feature/add-dijkstra`
-* `fix/binary-search-bug`
+Thank you for your interest in contributing to the **Data Structures and Algorithms** repository! We highly encourage contributions from students, developers, and anyone passionate about algorithmic problem-solving. To learn more about the contribution process, please refer to the [CONTRIBUTING.md](docs/CONTRIBUTING.md) file.
 
 ---
 
-### **Code Submission Guidelines**
+### **Common Contribution Types**
 
-#### General Guidelines
+The Issues in this repository are categorized into the following types, which will be assigned on a first-come-first-serve basis:
 
-1. **Document Your Code**: Include a brief description at the top explaining its functionality.
-2. **Complexity & Tests**: Clearly state the time and space complexity of your algorithm in comments and include test cases for your code, if applicable, and specify inputs and expected outputs.
-
-#### Language-Specific Guidelines  
-
-* **Python**: Follow [PEP 8](https://peps.python.org/pep-0008/) for style and indentation.  
-* **Java**: Use meaningful class names and follow [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).  
-* **C++**: Follow consistent naming conventions (e.g., `camelCase` for variables).  
-* **Go**: Adhere to [Effective Go](https://go.dev/doc/effective_go) for idiomatic code, use `gofmt` for formatting, and prefer concise, readable code following Go conventions.  
-
----
-
-### **Pull Request Process**
-
-1. **Commit Your Changes**: Use clear and descriptive commit messages:
-
-```bash
-git commit -m "Add: Dijkstra's algorithm in Python"
-```
-
-2. **Push Your Branch**:
-
-```bash
-git push origin feature/<branch-name>
-```
-
-3. **Create a Pull Request (PR)**:
-   - Navigate to the original repository.
-   - Click on **Pull Requests** > **New Pull Request**.
-   - Select your branch and submit your PR.
-   - Provide a detailed description of your changes, linking to relevant issues if applicable.
-
-4. **Respond to Feedback**: Collaborators may request changes or provide feedback. Be prompt in making updates.
-
----
-
-### **Coding Standards**
-
-* **Readability**: Ensure your code is easy to read with proper comments and spacing.
-* **Consistency**: Follow the repository's existing coding style.
-* **Error Handling**: Include error-handling mechanisms where applicable.
-
----
-
-## **Common Contribution Types**
-
-The Issues on the repo will mainly of the types mentioned below and will be assigned to individual on request and first come first serve basis.
 1. **New Algorithms**: Implement algorithms that are not yet part of the repository.
 2. **Optimization**: Improve the performance of existing algorithms.
 3. **Bug Fixes**: Address issues raised by other contributors.
@@ -187,17 +93,18 @@ The Issues on the repo will mainly of the types mentioned below and will be assi
 
 ---
 
-## **Code Review Process**
+## **Code Review Process** 
 
-* All PRs undergo a thorough review for quality, clarity, and performance.
-* Approved PRs are merged by the repository maintainers.
+All Pull Requests (PRs) are thoroughly reviewed for quality, clarity, and performance. Once a PR passes the review process, it will be merged by the repository maintainers.
 
 ---
 
 ## **Community Support**
 
-* **Questions**: Open a discussion under the **Discussions** tab.
-* **Issues**: Issues will be made available with bounty points for the AMWOC and will be assigned on request.
+We value community support and collaboration! If you have any questions or suggestions:
+
+- **Questions**: Open a discussion under the **Discussions** tab.
+- **Issues**: Issues will be made available with bounty points for AMWOC (Amrita Web Of Code) and will be assigned on request.
 
 We’re excited to have you onboard. Let’s build something amazing together! 🚀
 
@@ -205,12 +112,12 @@ We’re excited to have you onboard. Let’s build something amazing together! �
 
 ## **Contributors**
 
-| **Contribution Type** | **Contributor** |
-| --- | --- |
-| Python Implementation | Ashwin Narayanan S |
-| C++ Implementation | Aasil |
+| **Contribution Type** | **Contributor**      |
+| --------------------- | -------------------- |
+| Python Implementation | Ashwin Narayanan S    |
+| C++ Implementation    | Aasil                 |
 
-Your name could be here—contribute today! 🚀
+Your name could be here—**contribute today!** 🚀
 
 ---
 
@@ -222,12 +129,14 @@ This repository is inspired by the **Design and Analysis of Algorithms** course 
 
 ## **License**
 
-This repository is licensed under the **GNU GENERAL PUBLIC LICENSE**. Feel free to use the code, with attribution, for your own projects. View the complete license in the [LICENSE](LICENSE) file.
+This repository is licensed under the **GNU General Public License**. Feel free to use, modify, and distribute the code for your own projects, with proper attribution. For the full license details, refer to the [LICENSE](LICENSE) file.
 
 ---
 
 ## **Stay Connected**
 
-💻 Explore. 🌟 Star. 🍴 Fork. Let’s build a thriving community of learners and developers!
+- 💻 **Explore** the repository.
+- 🌟 **Star** the repository if you find it useful.
+- 🍴 **Fork** the repository to contribute.
 
---- 
+Let’s build a thriving community of learners and developers together! 🚀
