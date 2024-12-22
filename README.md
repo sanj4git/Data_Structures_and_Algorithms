@@ -1,4 +1,13 @@
-# **Data Structures and Algorithms** 📚💻
+<h1 align="center"> Data Structures and Algorithms 📚💻 </h1>
+
+<div align="center" style="display:flex; align-items: center; justify: center; text-decoration: none ">
+  <a href="https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms/blob/main/LICENSE" target="_blank" rel="noreferrer">
+    <img align='center' src="https://img.shields.io/badge/LICENSE-GPL-green"/>
+  </a>
+  <a href="https://github.com/Ashrockzzz2003/Data_Structures_and_Algorithms" target="_blank" rel="noreferrer">
+    <img align='center' src="https://img.shields.io/github/created-at/Ashrockzzz2003/Data_Structures_and_Algorithms"/>
+  </a>  
+</div>
 
 Welcome to the **Data Structures and Algorithms** repository—a comprehensive collection of foundational data structures and algorithms implemented in **Python**, **C++**, **Go**, and **Java**. This repository serves as a resource hub for **computer science students** and **enthusiasts** eager to deepen their understanding of algorithmic design.
 
