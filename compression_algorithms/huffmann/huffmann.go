@@ -6,6 +6,8 @@ import (
     "io/ioutil"
     "os"
     "sort"
+    "bufio"
+    "strings"
 )
 
 type Node struct {
@@ -205,47 +207,42 @@ func (hc *HuffmanCodec) Decompress(compressed string) string {
 }
 
 func main() {
-<<<<<<< HEAD
-    if len(os.Args) < 2 {
-        fmt.Println("Usage: go run h.go <filename>")
+    reader := bufio.NewReader(os.Stdin)
+    fmt.Println("Choose an option:")
+    fmt.Println("1. Enter a string")
+    fmt.Println("2. Provide a filename")
+
+    choice, _ := reader.ReadString('\n')
+    choice = strings.TrimSpace(choice)
+
+    var input string
+
+    switch choice {
+    case "1":
+        fmt.Print("Enter the string: ")
+        input, _ = reader.ReadString('\n')
+        input = strings.TrimSpace(input)
+    case "2":
+        fmt.Print("Enter the filename: ")
+        filename, _ := reader.ReadString('\n')
+        filename = strings.TrimSpace(filename)
+
+        content, err := ioutil.ReadFile(filename)
+        if err != nil {
+            fmt.Println("Error reading file:", err)
+            return
+        }
+        input = string(content)
+    default:
+        fmt.Println("Invalid choice")
         return
     }
 
-    filename := os.Args[1]
-    content, err := ioutil.ReadFile(filename)
-    if err != nil {
-        fmt.Println("Error reading file:", err)
-        return
-    }
-
-    input := string(content)
     codec := NewHuffmanCodec(input)
     compressed := codec.Compress(input)
 
+    fmt.Println("Original Content:", input)
+    fmt.Println("Huffman Codes:", codec.codes)
     fmt.Println("Compressed Data:", compressed)
     fmt.Println("Decompressed Data:", codec.Decompress(compressed))
 }
-//Main block to use initial implementation which takes a string as input directly
-// func main() {
-//     input := "Hello"
-//     codec := NewHuffmanCodec(input)
-//     var compressed string
-//     compressed = codec.Compress(input)
-
-//     fmt.Println("\nNormal case test:")
-//     fmt.Println("Input:", input)
-//     fmt.Println("Compressed:", compressed)
-//     fmt.Println("Decompressed:", codec.Decompress(compressed))
-// }
-=======
-    input := "Hello"
-    codec := NewHuffmanCodec(input)
-    var compressed string
-    compressed = codec.Compress(input)
-    
-    fmt.Println("\nNormal case test:")
-    fmt.Println("Input:", input)
-    fmt.Println("Compressed:", compressed)
-    fmt.Println("Decompressed:", codec.Decompress(compressed))
-}
->>>>>>> d0935ffb3a186013e2e9ea1e5daa816b0fad5583
