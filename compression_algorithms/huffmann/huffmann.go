@@ -205,7 +205,6 @@ func (hc *HuffmanCodec) Decompress(compressed string) string {
 }
 
 func main() {
-<<<<<<< HEAD
     if len(os.Args) < 2 {
         fmt.Println("Usage: go run h.go <filename>")
         return
@@ -237,5 +236,3 @@ func main() {
 //     fmt.Println("Compressed:", compressed)
 //     fmt.Println("Decompressed:", codec.Decompress(compressed))
 // }
-
->>>>>>> d0935ffb3a186013e2e9ea1e5daa816b0fad5583
