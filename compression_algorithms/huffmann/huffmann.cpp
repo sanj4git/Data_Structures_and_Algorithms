@@ -26,6 +26,7 @@ public:
         : compare(comparator) {}
 
     string huffmann_encode(vector<T>& elements){
+        if (elements.empty()) return "";    //Handling empty input
         buildTree(elements);
         
         map<T, string> codes;
@@ -41,6 +42,11 @@ public:
     vector<T> huffmann_decode(string encoding){
         vector<T> decoded;
         HuffNode<T> *curr = root;
+        if(curr == nullptr || encoding.empty()) return decoded;     //Handling empty input
+        if(curr->val.has_value()){
+            if(encoding[0] == '0') decoded.push_back(curr->val.value());    //Handling single element
+            return decoded;
+        }
         for(auto x: encoding){
             if(x == '0') curr = curr->left;
             else curr = curr->right;
@@ -61,9 +67,14 @@ private:
     
     void getCodes(HuffNode<T> *root, string code, map<T, string> &codes){
         if(root == nullptr) return;
-        if(root->val.has_value()) codes[root->val.value()] = code;
-        getCodes(root->left, code + "0", codes);
-        getCodes(root->right, code + "1", codes);
+        if(root->val.has_value()) {
+            if(code.empty()) code = "0";    //Handling single element
+            codes[root->val.value()] = code;
+        }
+        else{
+            getCodes(root->left, code + "0", codes);
+            getCodes(root->right, code + "1", codes);
+        }
     }
 
     void buildTree(const vector<T> &elements){
@@ -122,8 +133,10 @@ struct MyClass {
 };
 
 int main() {
+//Test 1:
     //Huffmann Encoder for characters
-    string message = "Hello, World!";
+    string message = "Hello World!";
+    cout<<"Message: "<<message<<'\n';
     vector<char> elements;
     for(auto x: message){
         elements.push_back(x);
@@ -138,6 +151,39 @@ int main() {
     }
     cout<<'\n';
 
+//Test 2:
+    message = "";
+    cout<<"Message: "<<message<<'\n';
+    elements.clear();
+    for(auto x: message){
+        elements.push_back(x);
+    }
+    encoding = tree.huffmann_encode(elements);
+    cout << "Encoded: " << encoding << '\n';
+    decoded = tree.huffmann_decode(encoding);
+    cout << "Decoded: ";
+    for(auto x: decoded){
+        cout << x;
+    }
+    cout<<'\n';
+
+//Test 3:
+    message = "a";
+    cout<<"Message: "<<message<<'\n';
+    elements.clear();
+    for(auto x: message){
+        elements.push_back(x);
+    }
+    encoding = tree.huffmann_encode(elements);
+    cout << "Encoded: " << encoding << '\n';
+    decoded = tree.huffmann_decode(encoding);
+    cout << "Decoded: ";
+    for(auto x: decoded){
+        cout << x;
+    }
+    cout<<'\n';
+
+//Test 4:
     //Huffmann Encoder for custom classes
     vector<MyClass> elements1 = {
         {1, "apple"},
@@ -156,11 +202,9 @@ int main() {
     vector<MyClass> decoded1 = tree1.huffmann_decode(encoding1);
     cout << "Decoded: ";
     for (auto x : decoded1) {
-        cout << x.id << " (" << x.name << ") ";
+        cout << x.id << "(" << x.name << ") ";
     }
     cout << '\n';
     
     return 0;
 }
-
-
