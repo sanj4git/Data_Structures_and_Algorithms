@@ -18,24 +18,19 @@
     Space O(n)
 
 */
-#include <iostream>
+#include <bits/stdc++.h> 
 using namespace std;
 
 const int RUN_SIZE = 32; // for larger data sets we can use 64 as the run size
 
-int getMin(int x, int y)
-{
-    return (x < y) ? x : y;
-}
-
-// insertion sort
-void perfInsSort(int arr[], int start, int stop)
+// Insertion Sort
+void perfInsSort(vector<int>&arr, int start, int stop)
 {
     for (int idx = start + 1; idx <= stop; ++idx)
     {
         int current = arr[idx];
         int prev = idx - 1;
-        while (prev >= 0 && arr[prev] > current)
+        while (prev >= start && arr[prev] > current)
         {
             arr[prev + 1] = arr[prev];
             prev--;
@@ -44,25 +39,17 @@ void perfInsSort(int arr[], int start, int stop)
     }
 }
 
-// merge sort.
-void mergeSegments(int arr[], int left, int middle, int right)
+// Merge Sort Helper Function
+void mergeSegments(vector<int>& arr, int left, int middle, int right)
 {
     int len1 = middle - left + 1;
     int len2 = right - middle;
 
-    int leftPart[len1], rightPart[len2];
+    vector<int> leftPart(len1), rightPart(len2);
 
-    for (int i = 0; i < len1; ++i)
-    {
-        leftPart[i] = arr[left + i];
-    }
-    for (int j = 0; j < len2; ++j)
-    {
-        rightPart[j] = arr[middle + 1 + j];
-    }
-
+    for (int i = 0; i < len1; ++i) leftPart[i] = arr[left + i];
+    for (int j = 0; j < len2; ++j) rightPart[j] = arr[middle + 1 + j];
     int i = 0, j = 0, k = left;
-
     while (i < len1 && j < len2)
     {
         if (leftPart[i] <= rightPart[j])
@@ -93,11 +80,13 @@ void mergeSegments(int arr[], int left, int middle, int right)
     }
 }
 
-void executeTimSort(int arr[], int size)
+// TimSort Algorithm
+void executeTimSort(vector<int>& arr, int size)
 {
+    if(size<=0) return;
     // Sort chunks of size RUN_SIZE using insertion sort
     for (int i = 0; i < size; i += RUN_SIZE)
-        perfInsSort(arr, i, getMin(i + RUN_SIZE - 1, size - 1));
+        perfInsSort(arr, i, min(i + RUN_SIZE - 1, size - 1));
 
     // Merge sorted chunks, doubling the merge size in each iteration
     for (int run = RUN_SIZE; run < size; run *= 2)
@@ -105,31 +94,36 @@ void executeTimSort(int arr[], int size)
         for (int start = 0; start < size; start += 2 * run)
         {
             int mid = start + run - 1;
-            int end = getMin(start + 2 * run - 1, size - 1);
+            int end = min(start + 2 * run - 1, size - 1);
             if (mid < end) mergeSegments(arr, start, mid, end);
         }
     }
 }
-void displayArray(const int arr[], int size)
+
+void displayArray(const vector<int>& arr)
 {
-    for (int i = 0; i < size; ++i)
-        cout << arr[i] << " ";
+    for (int val : arr)
+        cout << val << " ";
     cout << endl;
 }
 
 int main()
 {
-    int arr[] = {-2, 7, 16, -17, 10, 15, 0, 9, -7, -4, -13, 5, 8, -14, 12};
-    int n = sizeof(arr) / sizeof(arr[0]);
+    const int sizee = 128;  
+    vector<int> arr(sizee);
+
+    // Initialize the array with descending values
+    for (int i = 0; i < sizee; i++)
+        arr[i] = sizee - i;
 
     cout << "Array before sorting:" << endl;
-    displayArray(arr, n);
+    displayArray(arr);
 
-    executeTimSort(arr, n);
+    // Sort the array using TimSort
+    executeTimSort(arr, arr.size());
 
     cout << "Array after sorting:" << endl;
-    displayArray(arr, n);
+    displayArray(arr);
 
     return 0;
 }
-
