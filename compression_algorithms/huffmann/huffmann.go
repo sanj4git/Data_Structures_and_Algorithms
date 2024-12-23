@@ -3,6 +3,8 @@ package main
 import (
     "container/heap"
     "fmt"
+    "io/ioutil"
+    "os"
     "sort"
 )
 
@@ -155,13 +157,34 @@ func (hc *HuffmanCodec) Decompress(compressed string) string {
 }
 
 func main() {
-    input := "Hello"
-    
+    if len(os.Args) < 2 {
+        fmt.Println("Usage: go run h.go <filename>")
+        return
+    }
+
+    filename := os.Args[1]
+    content, err := ioutil.ReadFile(filename)
+    if err != nil {
+        fmt.Println("Error reading file:", err)
+        return
+    }
+
+    input := string(content)
     codec := NewHuffmanCodec(input)
-    
     compressed := codec.Compress(input)
-    fmt.Println("Compressed:", compressed)
-    
-    decompressed := codec.Decompress(compressed)
-    fmt.Println("Decompressed:", decompressed)
+
+    fmt.Println("Compressed Data:", compressed)
+    fmt.Println("Decompressed Data:", codec.Decompress(compressed))
 }
+//Main block to use initial implementation which takes a string as input directly
+// func main() {
+//     input := "Hello"
+//     codec := NewHuffmanCodec(input)
+//     var compressed string
+//     compressed = codec.Compress(input)
+
+//     fmt.Println("\nNormal case test:")
+//     fmt.Println("Input:", input)
+//     fmt.Println("Compressed:", compressed)
+//     fmt.Println("Decompressed:", codec.Decompress(compressed))
+// }
