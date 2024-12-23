@@ -216,12 +216,14 @@ func main() {
     choice = strings.TrimSpace(choice)
 
     var input string
+    var originalSize int
 
     switch choice {
     case "1":
         fmt.Print("Enter the string: ")
         input, _ = reader.ReadString('\n')
         input = strings.TrimSpace(input)
+        originalSize = len(input)
     case "2":
         fmt.Print("Enter the filename: ")
         filename, _ := reader.ReadString('\n')
@@ -233,6 +235,7 @@ func main() {
             return
         }
         input = string(content)
+        originalSize = len(content)
     default:
         fmt.Println("Invalid choice")
         return
@@ -240,10 +243,33 @@ func main() {
 
     codec := NewHuffmanCodec(input)
     compressed := codec.Compress(input)
+    compressedSize := len(compressed) / 8 // Since each bit is a character, converting bits to bytes
 
     fmt.Println("Original Content:", input)
     fmt.Println("Huffman Codes:", codec.codes)
     fmt.Println("Compressed Data:", compressed)
     fmt.Println("Decompressed Data:", codec.Decompress(compressed))
+    fmt.Printf("Original Size: %s\n", humanReadableSize(originalSize))
+    fmt.Printf("Compressed Size: %s\n", humanReadableSize(compressedSize))
 }
+
+func humanReadableSize(size int) string {
+    const (
+        KB = 1024
+        MB = KB * 1024
+        GB = MB * 1024
+    )
+
+    switch {
+    case size >= GB:
+        return fmt.Sprintf("%.2f GB", float64(size)/GB)
+    case size >= MB:
+        return fmt.Sprintf("%.2f MB", float64(size)/MB)
+    case size >= KB:
+        return fmt.Sprintf("%.2f KB", float64(size)/KB)
+    default:
+        return fmt.Sprintf("%d B", size)
+    }
+}
+
 
