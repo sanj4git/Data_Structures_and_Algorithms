@@ -40,6 +40,22 @@ func (pq *PriorityQueue) Pop() interface{} {
 }
 
 func BuildHuffmanTree(freqMap map[rune]int) *Node {
+    // Handle empty input
+    if len(freqMap) == 0 {
+        return nil
+    }
+
+    // Handle single character case
+    if len(freqMap) == 1 {
+        for char, freq := range freqMap {
+            return &Node{
+                char:   char,
+                freq:   freq,
+                isLeaf: true,
+            }
+        }
+    }
+
     pq := &PriorityQueue{}
     heap.Init(pq)
     
@@ -94,7 +110,12 @@ func GenerateCodes(root *Node, prefix string, codes map[rune]string) {
     }
     
     if root.isLeaf {
-        codes[root.char] = prefix
+        // For single character case, use "0" as the code
+        if prefix == "" {
+            codes[root.char] = "0"
+        } else {
+            codes[root.char] = prefix
+        }
         return
     }
     
@@ -108,13 +129,20 @@ type HuffmanCodec struct {
 }
 
 func NewHuffmanCodec(input string) *HuffmanCodec {
+    // Handle empty input
+    if input == "" {
+        return &HuffmanCodec{
+            root:  nil,
+            codes: make(map[rune]string),
+        }
+    }
+
     freqMap := make(map[rune]int)
     for _, char := range input {
         freqMap[char]++
     }
     
     root := BuildHuffmanTree(freqMap)
-    
     codes := make(map[rune]string)
     GenerateCodes(root, "", codes)
     
@@ -125,6 +153,16 @@ func NewHuffmanCodec(input string) *HuffmanCodec {
 }
 
 func (hc *HuffmanCodec) Compress(input string) string {
+    // Handle empty input
+    if input == "" {
+        return ""
+    }
+
+    // Handle nil codec (created with empty input)
+    if hc.root == nil {
+        return ""
+    }
+
     compressed := ""
     for _, char := range input {
         compressed += hc.codes[char]
@@ -133,10 +171,20 @@ func (hc *HuffmanCodec) Compress(input string) string {
 }
 
 func (hc *HuffmanCodec) Decompress(compressed string) string {
-    if len(compressed) == 0 {
+    // Handle empty input or nil codec
+    if compressed == "" || hc.root == nil {
         return ""
     }
-    
+
+    // Handle single character case
+    if hc.root.isLeaf {
+        result := ""
+        for range compressed {
+            result += string(hc.root.char)
+        }
+        return result
+    }
+
     decoded := ""
     current := hc.root
     
@@ -157,6 +205,7 @@ func (hc *HuffmanCodec) Decompress(compressed string) string {
 }
 
 func main() {
+<<<<<<< HEAD
     if len(os.Args) < 2 {
         fmt.Println("Usage: go run h.go <filename>")
         return
@@ -188,3 +237,15 @@ func main() {
 //     fmt.Println("Compressed:", compressed)
 //     fmt.Println("Decompressed:", codec.Decompress(compressed))
 // }
+=======
+    input := "Hello"
+    codec := NewHuffmanCodec(input)
+    var compressed string
+    compressed = codec.Compress(input)
+    
+    fmt.Println("\nNormal case test:")
+    fmt.Println("Input:", input)
+    fmt.Println("Compressed:", compressed)
+    fmt.Println("Decompressed:", codec.Decompress(compressed))
+}
+>>>>>>> d0935ffb3a186013e2e9ea1e5daa816b0fad5583
