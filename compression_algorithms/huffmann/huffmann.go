@@ -246,3 +246,4 @@ func main() {
     fmt.Println("Compressed Data:", compressed)
     fmt.Println("Decompressed Data:", codec.Decompress(compressed))
 }
+
