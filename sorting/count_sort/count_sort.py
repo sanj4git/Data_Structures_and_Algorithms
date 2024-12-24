@@ -10,9 +10,9 @@ def counting_sort(L):
     min_value = min(L)
     offset = -min_value if min_value < 0 else 0
     n = len(L)
-    frequencyArray = [0]*(largest + 1 + offset)
 
-    # Count the frequency of each element in the array.
+    # Initialise the frequency Array.
+    frequencyArray = [0]*(largest + 1 + offset)
     for i in range(n):
         # Shift the element by the offset which ensures negative numbers 
         # are shifted to non-negative indices in the frequencyArray.
@@ -34,7 +34,7 @@ def counting_sort(L):
 L = [1, 4, 1, 3, 2, 4, 3, 7]
 print(counting_sort(L)) # Output: [1, 1, 2, 3, 3, 4, 4, 7]
 
-L2 = [5,-4,-3,-2,4,7,9]
+L2 = [5, -4, -3, -2, 4, 7, 9]
 print(counting_sort(L2)) # Output: [-4, -3, -2, 4, 5, 7, 9]
 
 L3 = []
