@@ -10,19 +10,18 @@ def counting_sort(L):
     min_value = min(L)
     offset = -min_value if min_value < 0 else 0
     n = len(L)
-    
-    # Initialize the frequency array.
-    frequencyArray = [0]*(largest+1+offset)
+    frequencyArray = [0]*(largest + 1 + offset)
 
     # Count the frequency of each element in the array.
     for i in range(n):
-        # Shift the element by the offset which ensures negative numbers are shifted to non-negative indices in the frequencyArray.
-        frequencyArray[L[i]+offset] = frequencyArray[L[i]+offset]+1
+        # Shift the element by the offset which ensures negative numbers 
+        # are shifted to non-negative indices in the frequencyArray.
+        frequencyArray[L[i] + offset] = frequencyArray[L[i] + offset]+1
         
     # Sorting part.
     j = 0
     for i in range(len(frequencyArray)):
-        while(frequencyArray[i]>0):
+        while(frequencyArray[i] > 0):
             # Restores our original numbers after sorting.
             L[j] = i - offset 
             frequencyArray[i] = frequencyArray[i] - 1
