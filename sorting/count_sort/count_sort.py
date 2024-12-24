@@ -1,5 +1,7 @@
-# https://www.ripublication.com/ijaer18/ijaerv13n1_28.pdf
-import math
+"""
+Logic to handle negative numbers in counting sort was referred from the below link:
+https://www.ripublication.com/ijaer18/ijaerv13n1_28.pdf
+"""
 def counting_sort(L):
     if not L:
         return L
