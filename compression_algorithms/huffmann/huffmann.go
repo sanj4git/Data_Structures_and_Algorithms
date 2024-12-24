@@ -40,12 +40,12 @@ func (pq *priorityQueue) Pop() interface{} {
 }
 
 func buildHuffmanTree(freqMap map[rune]int) *Node {
-	// Handle empty input
+	// Handle empty input.
 	if len(freqMap) == 0 {
 		return nil
 	}
 
-	// Handle single character case
+	// Handle single character case.
 	if len(freqMap) == 1 {
 		for char, freq := range freqMap {
 			return &Node{
@@ -106,7 +106,7 @@ func generateCodes(root *Node, prefix string, codes map[rune]string) {
 	}
 
 	if root.isLeaf {
-		// For single character case, use "0" as the code
+		// For single character case, use "0" as the code.
 		if prefix == "" {
 			codes[root.char] = "0"
 		} else {
@@ -125,7 +125,7 @@ type HuffmanCodec struct {
 }
 
 func newHuffmanCodec(input string) *HuffmanCodec {
-	// Handle empty input
+	// Handle empty input.
 	if input == "" {
 		return &HuffmanCodec{
 			root:  nil,
@@ -149,12 +149,12 @@ func newHuffmanCodec(input string) *HuffmanCodec {
 }
 
 func (hc *HuffmanCodec) compress(input string) string {
-	// Handle empty input
+	// Handle empty input.
 	if input == "" {
 		return ""
 	}
 
-	// Handle nil codec (created with empty input)
+	// Handle nil codec (created with empty input).
 	if hc.root == nil {
 		return ""
 	}
@@ -167,12 +167,12 @@ func (hc *HuffmanCodec) compress(input string) string {
 }
 
 func (hc *HuffmanCodec) decompress(compressed string) string {
-	// Handle empty input or nil codec
+	// Handle empty input or nil codec.
 	if compressed == "" || hc.root == nil {
 		return ""
 	}
 
-	// Handle single character case
+	// Handle single character case.
 	if hc.root.isLeaf {
 		result := ""
 		for range compressed {
@@ -237,7 +237,7 @@ func main() {
 
 	codec := newHuffmanCodec(input)
 	compressed := codec.compress(input)
-	compressedSize := len(compressed) / 8 // Since each bit is a character, converting bits to bytes
+	compressedSize := len(compressed) / 8 // Since each bit is a character, converting bits to bytes.
 
 	fmt.Println("Original Content:", input)
 	fmt.Println("Huffman Codes:", codec.codes)
