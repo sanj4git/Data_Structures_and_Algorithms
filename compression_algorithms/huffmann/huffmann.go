@@ -219,9 +219,13 @@ func main() {
 		input = strings.TrimSpace(input)
 		originalSize = len(input)
 	case "2":
-		fmt.Print("Enter the filename: ")
+		fmt.Print("Enter the filename (relative path from current directory or absolute path): ")
 		filename, _ := reader.ReadString('\n')
 		filename = strings.TrimSpace(filename)
+		// Remove surrounding quotes if present.
+		filename = strings.Trim(filename, "\"")
+		// Replace backslashes with forward slashes for cross-platform compatibility.
+		filename = strings.ReplaceAll(filename, "\\", "/")
 
 		content, err := os.ReadFile(filename)
 		if err != nil {
