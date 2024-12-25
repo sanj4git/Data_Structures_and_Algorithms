@@ -77,16 +77,16 @@ void perfInsSort(vector<int>&arr, int start, int stop) {
 
     Space O(n)- As temporary arrays are created for merging.
 */
-void mergeSegments(vector<int>& arr, int leftSize, int middle, int rightSize) {
-    int len1 = middle - leftSize + 1;
-    int len2 = rightSize - middle;
+void mergeSegments(vector<int>& arr, int left, int middle, int right) {
+    int leftSize = middle - left + 1;
+    int rightSize = right - middle;
 
-    vector<int> leftPart(len1), rightPart(len2);
+    vector<int> leftPart(leftSize), rightPart(rightSize);
 
-    for (int i = 0; i < len1; ++i) leftPart[i] = arr[leftSize + i];
-    for (int j = 0; j < len2; ++j) rightPart[j] = arr[middle + 1 + j];
-    int i = 0, j = 0, k = leftSize;
-    while (i < len1 && j < len2) {
+    for (int i = 0; i < leftSize; ++i) leftPart[i] = arr[left + i];
+    for (int j = 0; j < rightSize; ++j) rightPart[j] = arr[middle + 1 + j];
+    int i = 0, j = 0, k = left;
+    while (i < leftSize && j < rightSize) {
         if (leftPart[i] <= rightPart[j]) {
             arr[k] = leftPart[i];
             ++i;
@@ -97,13 +97,13 @@ void mergeSegments(vector<int>& arr, int leftSize, int middle, int rightSize) {
         ++k;
     }
 
-    while (i < len1) {
+    while (i < leftSize) {
         arr[k] = leftPart[i];
         ++i;
         ++k;
     }
 
-    while (j < len2) {
+    while (j < rightSize) {
         arr[k] = rightPart[j];
         ++j;
         ++k;
