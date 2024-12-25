@@ -1,8 +1,7 @@
 package main
 
-import "sort"
 
-const threshold = 5000
+const threshold = 10000
 
 func parallelMergeSort(arr []int, c chan []int) {
 	if len(arr) <= 1 {
@@ -11,7 +10,7 @@ func parallelMergeSort(arr []int, c chan []int) {
 	}
 
 	if len(arr) <= threshold {
-		sort.Slice(arr, func(i, j int) bool { return arr[i] < arr[j] })
+		mergeSort(arr)
 		c <- arr
 		return
 	}
