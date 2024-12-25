@@ -104,6 +104,8 @@ We’re excited to have you contribute! Whether it’s adding a new algorithm, f
 | [Keerthivasan S V](https://github.com/Keerthivasan-Venkitajalam) | Markdown (.md)      |
 | [Tharun D](https://github.com/tharun-0106)                       | Documentation (.md) |
 | [BIJJUDAMA](https://github.com/BIJJUDAMA)                        | Miscellaneous       |
+| [Shreyas Visweshwaran](https://github.com/FirefoxSRV)            | Code Review         |
+| [Vishal](https://github.com/VishalTheHuman)                      | Code Review         |
 
 Want to see your name here? Contribute this Winter for AmWOC (Amrita Winter of Code) and make it! 🚀
 
