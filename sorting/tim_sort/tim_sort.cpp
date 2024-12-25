@@ -18,7 +18,9 @@
     Space O(n)
 
 */
-#include <bits/stdc++.h> 
+#include <iostream>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 const int RUN_SIZE = 32; // For larger data sets we can use 64 as the run size.
@@ -75,15 +77,15 @@ void perfInsSort(vector<int>&arr, int start, int stop) {
 
     Space O(n)- As temporary arrays are created for merging.
 */
-void mergeSegments(vector<int>& arr, int left, int middle, int right) {
-    int len1 = middle - left + 1;
-    int len2 = right - middle;
+void mergeSegments(vector<int>& arr, int leftSize, int middle, int rightSize) {
+    int len1 = middle - leftSize + 1;
+    int len2 = rightSize - middle;
 
     vector<int> leftPart(len1), rightPart(len2);
 
-    for (int i = 0; i < len1; ++i) leftPart[i] = arr[left + i];
+    for (int i = 0; i < len1; ++i) leftPart[i] = arr[leftSize + i];
     for (int j = 0; j < len2; ++j) rightPart[j] = arr[middle + 1 + j];
-    int i = 0, j = 0, k = left;
+    int i = 0, j = 0, k = leftSize;
     while (i < len1 && j < len2) {
         if (leftPart[i] <= rightPart[j]) {
             arr[k] = leftPart[i];
