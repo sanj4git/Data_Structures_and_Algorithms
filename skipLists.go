@@ -8,7 +8,6 @@ import (
 
 type Node struct {
 	value int
-	level int     // Store the level of each node.
 	next  []*Node // This allows each node in the skip list to have multiple pointers to other nodes
 } // at different levels, supporting the layered structure of the skip list.
 
@@ -31,7 +30,6 @@ func newSkipList() *skipList {
 	initialMaxLevel := 1
 	head := &Node{
 		value: 0,
-		level: initialMaxLevel,
 		next:  make([]*Node, initialMaxLevel),
 	}
 
@@ -52,7 +50,6 @@ func (sl *skipList) insert(value int) {
 	newLevel := coinToss(newMaxLevel)
 	newNode := &Node{
 		value: value,
-		level: newLevel,
 		next:  make([]*Node, newLevel+1),
 	}
 
