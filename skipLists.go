@@ -2,18 +2,18 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"math"
+	"math/rand"
 )
 
 type Node struct {
 	value int
 	level int     // Store the level of each node.
 	next  []*Node // This allows each node in the skip list to have multiple pointers to other nodes
-} 				  // at different levels, supporting the layered structure of the skip list.
+} // at different levels, supporting the layered structure of the skip list.
 
 type skipList struct {
-	head *Node
+	head         *Node
 	noOfElements int
 	maxNoOfLevel int
 }
@@ -38,101 +38,99 @@ func newSkipList() *skipList {
 	return &skipList{
 		head:         head,
 		noOfElements: 0,
-		maxNoOfLevel: initialMaxLevel, 
+		maxNoOfLevel: initialMaxLevel,
 	}
 }
 
 func (sl *skipList) insert(value int) {
-    // Calculate max level based on current size.
-    newMaxLevel := int(math.Floor(math.Log2(float64(sl.noOfElements + 1))))
-    if newMaxLevel < 1 {
-        newMaxLevel = 1
-    }
+	// Calculate max level based on current size.
+	newMaxLevel := int(math.Floor(math.Log2(float64(sl.noOfElements + 1))))
+	if newMaxLevel < 1 {
+		newMaxLevel = 1
+	}
 
-    newLevel := coinToss(newMaxLevel)
-    newNode := &Node{
-        value: value,
-        level: newLevel,
-        next:  make([]*Node, newLevel+1),
-    }
+	newLevel := coinToss(newMaxLevel)
+	newNode := &Node{
+		value: value,
+		level: newLevel,
+		next:  make([]*Node, newLevel+1),
+	}
 
-    // Expand head's next slice only if needed for new node.
-    if len(sl.head.next) < newLevel+1 {
-        newNext := make([]*Node, newLevel+1)
-        copy(newNext, sl.head.next)
-        sl.head.next = newNext
-    }
+	// Expand head's next slice only if needed for new node.
+	if len(sl.head.next) < newLevel+1 {
+		newNext := make([]*Node, newLevel+1)
+		copy(newNext, sl.head.next)
+		sl.head.next = newNext
+	}
 
-    current := sl.head
-    update := make([]*Node, newLevel+1)
-    for i := newLevel; i >= 0; i-- {
-        for current.next[i] != nil && current.next[i].value < value {
-            current = current.next[i]
-        }
-        update[i] = current
-    }
+	current := sl.head
+	update := make([]*Node, newLevel+1)
+	for i := newLevel; i >= 0; i-- {
+		for current.next[i] != nil && current.next[i].value < value {
+			current = current.next[i]
+		}
+		update[i] = current
+	}
 
-    for i := 0; i <= newLevel; i++ {
-        newNode.next[i] = update[i].next[i]
-        update[i].next[i] = newNode
-    }
+	for i := 0; i <= newLevel; i++ {
+		newNode.next[i] = update[i].next[i]
+		update[i].next[i] = newNode
+	}
 
-    sl.noOfElements++
-    sl.maxNoOfLevel = newMaxLevel
+	sl.noOfElements++
+	sl.maxNoOfLevel = newMaxLevel
 }
 
 func (sl *skipList) remove(value int) {
-    if sl.noOfElements == 0 {
-        fmt.Println("Cannot remove from empty list")
-        return
-    }
+	if sl.noOfElements == 0 {
+		fmt.Println("Cannot remove from empty list")
+		return
+	}
 
-    current := sl.head
-    update := make([]*Node, sl.maxNoOfLevel)
+	current := sl.head
+	update := make([]*Node, sl.maxNoOfLevel)
 
-    // Traverse the list to find the position of the node to be deleted.
-    for i := sl.maxNoOfLevel - 1; i >= 0; i-- {
-        for current.next[i] != nil && current.next[i].value < value {
-            current = current.next[i]
-        }
-        update[i] = current
-    }
+	// Traverse the list to find the position of the node to be deleted.
+	for i := sl.maxNoOfLevel - 1; i >= 0; i-- {
+		for current.next[i] != nil && current.next[i].value < value {
+			current = current.next[i]
+		}
+		update[i] = current
+	}
 
-    current = current.next[0] // Move to the node to be deleted.
-    if current == nil || current.value != value {
-        fmt.Println("Element", value, "does not exist!")
-        return
-    }
+	current = current.next[0] // Move to the node to be deleted.
+	if current == nil || current.value != value {
+		fmt.Println("Element", value, "does not exist!")
+		return
+	}
 
-    // Remove node at all levels.
-    for i := 0; i < sl.maxNoOfLevel; i++ {
-        if update[i] != nil && i < len(update[i].next) {
-            update[i].next[i] = current.next[i]
-        }
-    }
-    sl.noOfElements--
+	for i := 0; i < sl.maxNoOfLevel; i++ {
+		if update[i] != nil && i < len(update[i].next) {
+			update[i].next[i] = current.next[i]
+		}
+	}
+	sl.noOfElements--
 
-    // Recalculate max level and trim unused levels.
-    if sl.noOfElements == 0 {
-        sl.head.next = make([]*Node, 1) // Reset for empty list.
-        sl.maxNoOfLevel = 1
-    } else {
-        newMaxLevel := int(math.Log2(float64(sl.noOfElements + 1)))
-        if newMaxLevel < 1 {
-            newMaxLevel = 1
-        }
-        sl.maxNoOfLevel = newMaxLevel
+	// Recalculate max level and trim unused levels.
+	if sl.noOfElements == 0 {
+		sl.head.next = make([]*Node, 1)
+		sl.maxNoOfLevel = 1
+	} else {
+		newMaxLevel := int(math.Log2(float64(sl.noOfElements + 1)))
+		if newMaxLevel < 1 {
+			newMaxLevel = 1
+		}
+		sl.maxNoOfLevel = newMaxLevel
 
-        if len(sl.head.next) > sl.maxNoOfLevel {
-            sl.head.next = sl.head.next[:sl.maxNoOfLevel]
-        }
-    }
+		if len(sl.head.next) > sl.maxNoOfLevel {
+			sl.head.next = sl.head.next[:sl.maxNoOfLevel]
+		}
+	}
 
-    fmt.Println("Element", value, "deleted successfully.")
+	fmt.Println("Element", value, "deleted successfully.")
 }
 
 func (sl *skipList) search(value int) bool {
-	// Check for empty list.
 	isEmpty := true
 	for i := 0; i < sl.maxNoOfLevel; i++ {
 		if sl.head.next[i] != nil {
@@ -167,7 +165,6 @@ func (sl *skipList) search(value int) bool {
 }
 
 func (sl *skipList) display() {
-	// Check for empty list.
 	isEmpty := true
 	for i := 0; i < sl.maxNoOfLevel; i++ {
 		if sl.head.next[i] != nil {
