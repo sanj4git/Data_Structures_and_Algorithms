@@ -9,7 +9,7 @@ import (
 type Node struct {
 	value int
 	next  []*Node // This allows each node in the skip list to have multiple pointers to other nodes
-} // at different levels, supporting the layered structure of the skip list.
+} 				  // at different levels, supporting the layered structure of the skip list.
 
 type skipList struct {
 	head         *Node
@@ -191,28 +191,28 @@ func (sl *skipList) display() {
 func main() {
 	skipList := newSkipList()
 
-	// Test empty list
+	// Test empty list.
 	skipList.search(5)
 	skipList.remove(5)
 	skipList.display()
 
-	// Test single element
+	// Test single element.
 	skipList.insert(10)
 	skipList.display()
 	skipList.remove(10)
 	skipList.display()
 
-	// Test removing non-existent elements
+	// Test removing non-existent elements.
 	skipList.insert(20)
 	skipList.remove(10)
 	skipList.remove(30)
 
-	// Test duplicate insertions
+	// Test duplicate insertions.
 	skipList.insert(30)
 	skipList.insert(30)
 	skipList.display()
 
-	// Test removing all elements
+	// Test removing all elements.
 	skipList.remove(20)
 	skipList.remove(30)
 	skipList.display()
