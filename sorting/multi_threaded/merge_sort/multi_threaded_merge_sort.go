@@ -10,7 +10,8 @@ func parallelMergeSort(arr []int, c chan []int) {
 	}
 
 	if len(arr) <= threshold {
-		mergeSort(arr)
+		// mergeSort(arr)
+		timSort(arr)
 		c <- arr
 		return
 	}
