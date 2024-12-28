@@ -128,15 +128,17 @@ func main() {
 	fmt.Println("ParallelMergeSort was", speedupPercentage, "percent faster")
 }
 
-// Observation:
 /*
-When the array size is small using goroutines and channels to sort the array is innefficient,
-potentially becoming a constraint for the system.
-So in such cases we use timsort instead of parallel merge sort.
-*/
+    Observation:
 
-// Result:
-// ParallelMergeSort was 67.92809839167455 percent faster for 10000
-// ParallelMergeSort was 59.443479651760626 percent faster for 100000
-// ParallelMergeSort was 65.12359967698855 percent faster for 1000000
-// ParallelMergeSort was 53.330810376171165 percent faster for 10000000
+    - When the array size is small using goroutines and channels to sort the array is innefficient,
+    potentially becoming a constraint for the system.
+    - So in such cases we use timsort instead of parallel merge sort.
+
+    Result:
+    
+    - ParallelMergeSort was 67.92809839167455 percent faster for 10000
+    - ParallelMergeSort was 59.443479651760626 percent faster for 100000
+    - ParallelMergeSort was 65.12359967698855 percent faster for 1000000
+    - ParallelMergeSort was 53.330810376171165 percent faster for 10000000
+*/
