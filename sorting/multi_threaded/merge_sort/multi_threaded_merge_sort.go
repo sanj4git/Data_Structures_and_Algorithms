@@ -99,13 +99,15 @@ func insertionSort(array []int) {
 }
 
 func main() {
-	arraySize := 10000
+	arraySize := 100000
 
 	array1 := []int{}
 
 	for i := 0; i < arraySize; i++ {
 		array1 = append(array1, rand.Intn(arraySize))
 	}
+	array2 := make([]int, len(array1))
+	copy(array2, array1)
 
 	// Timing Tim sort.
 	startTimSort := time.Now()
@@ -114,8 +116,6 @@ func main() {
 	fmt.Println("TimSort for", arraySize, "elements took", elapsedTimSort)
 
 	// Timing parallel merge sort.
-	array2 := make([]int, len(array1))
-	copy(array2, array1)
 	startParallelMergeSort := time.Now()
 	ch := make(chan []int)
 	go parallelMergeSort(array2, ch)
@@ -136,9 +136,7 @@ func main() {
     - So in such cases we use timsort instead of parallel merge sort.
 
     Result:
-    
-    - ParallelMergeSort was 67.92809839167455 percent faster for 10000
-    - ParallelMergeSort was 59.443479651760626 percent faster for 100000
-    - ParallelMergeSort was 65.12359967698855 percent faster for 1000000
-    - ParallelMergeSort was 53.330810376171165 percent faster for 10000000
+
+	- ParallelMergeSort was 50.2724112133081 percent faster for 100000
+	- ParallelMergeSort was 52.23465286992048 percent faster for 1000000
 */
