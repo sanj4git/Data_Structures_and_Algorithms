@@ -5,11 +5,12 @@ import (
 	"math"
 	"math/rand"
 )
-
+// next allows each node in the skip list to have multiple pointers to other nodes
+// at different levels, supporting the layered structure of the skip list.
 type Node struct {
 	value int
-	next  []*Node // This allows each node in the skip list to have multiple pointers to other nodes
-} 				  // at different levels, supporting the layered structure of the skip list.
+	next  []*Node 
+} 				  
 
 type skipList struct {
 	head         *Node
