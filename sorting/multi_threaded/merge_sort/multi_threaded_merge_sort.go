@@ -15,7 +15,6 @@ func parallelMergeSort(arr []int, c chan []int) {
 	}
 
 	if len(arr) <= threshold {
-		// mergeSort(arr)
 		timSort(arr)
 		c <- arr
 		return
@@ -59,18 +58,6 @@ func merge(leftArray, rightArray []int) []int {
 	return result
 }
 
-func mergeSort(inputArray []int) []int {
-	if len(inputArray) <= 1 {
-		return inputArray
-	}
-
-	middleIndex := len(inputArray) / 2
-	leftArray := mergeSort(inputArray[:middleIndex])
-	rightArray := mergeSort(inputArray[middleIndex:])
-
-	return merge(leftArray, rightArray)
-}
-
 func timSort(array []int) {
 	arrayLen := len(array)
 	minRun := 32
@@ -112,7 +99,7 @@ func insertionSort(array []int) {
 }
 
 func main() {
-	arraySize := 100000
+	arraySize := 10000000
 
 	array1 := []int{}
 
@@ -121,9 +108,9 @@ func main() {
 	}
 
 	// Timing normal merge sort
-	startMergeSort := time.Now()
-	mergeSort(array1)
-	elapsedMergeSort := time.Since(startMergeSort)
+	startTimSort := time.Now()
+	timSort(array1)
+	elapsedMergeSort := time.Since(startTimSort)
 	fmt.Println("MergeSort for", arraySize, "elements took", elapsedMergeSort)
 
 	// Timing parallel merge sort
@@ -141,6 +128,15 @@ func main() {
 	fmt.Println("ParallelMergeSort was", speedupPercentage, "percent faster")
 }
 
+// Observation:
+/*
+When the array size is small using goroutines and channels to sort the array is innefficient,
+potentially becoming a constraint for the system.
+So in such cases we use timsort instead of parallel merge sort.
+*/
 
 // Result:
-// ParallelMergeSort was 63.96576490304046 percent faster
+// ParallelMergeSort was 67.92809839167455 percent faster for 10000
+// ParallelMergeSort was 59.443479651760626 percent faster for 100000
+// ParallelMergeSort was 65.12359967698855 percent faster for 1000000
+// ParallelMergeSort was 53.330810376171165 percent faster for 10000000
