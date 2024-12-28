@@ -62,13 +62,13 @@ func timSort(array []int) {
 	arrayLen := len(array)
 	minRun := 32
 
-	// Sort the small runs using insertion sort
+	// Sort the small runs using insertion sort.
 	for i := 0; i < arrayLen; i += minRun {
 		end := min(i+minRun, arrayLen)
 		insertionSort(array[i:end])
 	}
 
-	// Merge the sorted runs using merge function
+	// Merge the sorted runs using merge function.
 	currentRunSize := minRun
 	for currentRunSize < arrayLen {
 		for leftStart := 0; leftStart < arrayLen; leftStart += 2 * currentRunSize {
@@ -107,13 +107,13 @@ func main() {
 		array1 = append(array1, rand.Intn(arraySize))
 	}
 
-	// Timing Tim sort
+	// Timing Tim sort.
 	startTimSort := time.Now()
 	timSort(array1)
 	elapsedTimSort := time.Since(startTimSort)
 	fmt.Println("TimSort for", arraySize, "elements took", elapsedTimSort)
 
-	// Timing parallel merge sort
+	// Timing parallel merge sort.
 	array2 := make([]int, len(array1))
 	copy(array2, array1)
 	startParallelMergeSort := time.Now()
@@ -123,7 +123,7 @@ func main() {
 	elapsedParallelMergeSort := time.Since(startParallelMergeSort)
 	fmt.Println("ParallelMergeSort for", arraySize, "elements took", elapsedParallelMergeSort)
 
-	// Compare the two
+	// Compare the two.
 	speedupPercentage := (float64(elapsedTimSort-elapsedParallelMergeSort) / float64(elapsedTimSort)) * 100
 	fmt.Println("ParallelMergeSort was", speedupPercentage, "percent faster")
 }
